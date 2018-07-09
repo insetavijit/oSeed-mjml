@@ -44,7 +44,8 @@ gulp.task('to:jade', gulp.parallel((done) => {
     pump([
         gulp.src(vl.doc.html2jade.src),
         html2jade({
-            nspaces: 4
+            nspaces: 4,
+            bodyless:true
         }),
         gulp.dest(vl.doc.html2jade.dist)
     ], done());
@@ -106,6 +107,24 @@ gulp.task('pug:min', gulp.parallel((done) => {
 }));
 
 /**
+ * 
+ * 
+ */
+gulp.task('css', gulp.parallel((done) => {
+    pump([
+        gulp.src(vl.pug.style.src),
+        html2jade({
+            nspaces: 4,
+            bodyless: true
+        }),
+        gulp.dest(vl.pug.style.dist)
+    ], done());
+}))
+
+
+
+
+ /**
  * @name watchs
  * @author avijit sakrar
  * @version 1.0
@@ -113,6 +132,10 @@ gulp.task('pug:min', gulp.parallel((done) => {
  */
 gulp.task('pug:w', gulp.parallel('pug:min', (done) => {
     gulp.watch(vl.watch.pug, gulp.parallel('pug:min'))
+    done();
+}))
+gulp.task('css:w', gulp.parallel('css', (done) => {
+    gulp.watch(vl.watch.style, gulp.parallel('css'))
     done();
 }))
 gulp.task('show:w', gulp.parallel('show', () => {
@@ -133,8 +156,8 @@ gulp.task('clr:all', gulp.parallel('clr:bin', 'clr:dist'));
  * @version 1.0
  * 
  */
-gulp.task('dev:all', gulp.parallel('pug:w', 'show:w'))
-gulp.task('dev:font', gulp.parallel('pug:w'))
+gulp.task('dev:all', gulp.parallel('pug:w','css:w', 'show:w'))
+gulp.task('dev:font', gulp.parallel('pug:w' ,'show:w'))
 
 gulp.task('clear', gulp.parallel('clr:all'));
 

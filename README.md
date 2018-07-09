@@ -28,6 +28,9 @@ cmnd | what is does ?
 `pug:w` | runs `pug:full` in compress mode.
 `pug:w` | runs `pug:min` in watch mode 
 ---|---
+`css` | compiles html -> jade ( only inside `/src/styles/`) so we can include it in out jade files
+`css:w` | runs `css` in watch mode 
+---|---
 `show` | runs `browserSync` in dist dir
 `show:w` | runs `show` in watch mode
 ---|---

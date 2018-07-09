@@ -5,7 +5,8 @@
         "dist":"dist/img"
     },
     "watch":{
-        "pug":"src/**/**.pug"
+        "pug":"src/**/**.pug",
+        "style":"src/styles/**.html"
     },
     "common" :{
         "dist":"dist",
@@ -19,6 +20,10 @@
     },
     "pug":{
         "entryfile":"src/index.pug",
-        "dist": "dist"
+        "dist": "dist",
+        "style":{
+            "src":"src/styles/**.html",
+            "dist":"src/libs/"
+        }
     }
 }
