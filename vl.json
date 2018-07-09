@@ -1,12 +1,26 @@
 {
-    "mjml":{
-        "src": "src",
-        "img":"doc/img/**.**",
-        "watch":"src/**/**.mjml"
+    "src":{
+        "name": "src",
+        "img":"doc/img/**.**"
     },
-    "dist":"dist",
+    "dist":{
+        "img":"dist/img",
+        "pug":"dist/"
+    },
+    "watch":{
+        "pug":"src/**/**.pug"
+    },
+    "common" :{
+        "dist":"dist",
+        "bin":".bin"
+    },
     "doc":{
         "project":"doc/project",
         "mjml":"doc/mjml"
+    },
+    "pug":{
+        "entryfile":"src/index.pug",
+        "dist": "dist"
+
     }
 }
