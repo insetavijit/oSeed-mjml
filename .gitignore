@@ -1,3 +1,10 @@
+
+
+
+
+
+
+# auto Gen dirs : all content of those file will be auto maticly created
 .bin
 dist
 node_modules
