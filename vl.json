@@ -1,0 +1,12 @@
+{
+    "mjml":{
+        "src": "src",
+        "img":"doc/img/**.**",
+        "watch":"src/**/**.mjml"
+    },
+    "dist":"dist",
+    "doc":{
+        "project":"doc/project",
+        "mjml":"doc/mjml"
+    }
+}
