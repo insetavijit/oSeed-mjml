@@ -19,7 +19,8 @@ var
     pug = require('gulp-pug'),
     html2jade = require('gulp-html2jade'),
     //mjml
-    mjml = require("gulp-mjml")
+    mjml = require("gulp-mjml"),
+    mjmlEngine = require("mjml")
 ;
 
 /**
@@ -62,20 +63,9 @@ gulp.task('show', gulp.parallel((done) => {
 
 
 /**
- * @type compile pug -> html
+ * @type compile pug -> mjml ->html
  */
 
-gulp.task('pug:min', gulp.parallel((done) => {
-    pump([
-        gulp.src(vl.pug.entryfile),
-        plumber(),
-        pug({
-            pretty: true
-        }),
-        // mjml(),
-        gulp.dest(vl.pug.dist)
-    ], done());
-}))
 gulp.task('pug:full', gulp.parallel((done) => {
     pump([
         gulp.src(vl.pug.entryfile),
@@ -83,7 +73,20 @@ gulp.task('pug:full', gulp.parallel((done) => {
         pug({
             pretty: true
         }),
-        mjml(),
+        mjml(mjmlEngine, {
+            minify: false
+        }),
+        gulp.dest(vl.pug.dist)
+    ], done());
+}))
+gulp.task('pug:min', gulp.parallel((done) => {
+    pump([
+        gulp.src(vl.pug.entryfile),
+        plumber(),
+        pug({
+            pretty: false
+        }),
+        mjml(mjmlEngine, { minify: true}),
         gulp.dest(vl.pug.dist)
     ], done());
 }));
