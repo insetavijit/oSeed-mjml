@@ -1,11 +1,8 @@
 {
-    "src":{
-        "name": "src",
-        "img":"doc/img/**.**"
-    },
-    "dist":{
-        "img":"dist/img",
-        "pug":"dist/"
+    
+    "img":{
+        "src": "doc/img/**.**",
+        "dist":"dist/img"
     },
     "watch":{
         "pug":"src/**/**.pug"
@@ -21,6 +18,5 @@
     "pug":{
         "entryfile":"src/index.pug",
         "dist": "dist"
-
     }
 }

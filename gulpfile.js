@@ -30,9 +30,9 @@ var
  */
 gulp.task('sft:img', gulp.parallel((done) => {
     pump([
-        gulp.src(vl.src.img),
+        gulp.src(vl.img.src),
         imgMin(),
-        gulp.dest(vl.dist.img)
+        gulp.dest(vl.img.dist)
     ], done());
 }));
 /**
@@ -41,11 +41,11 @@ gulp.task('sft:img', gulp.parallel((done) => {
  * @version 1.0.0
  */
 gulp.task('clr:bin', gulp.parallel((done) => {
-    del(vl.cmommon.bin + '/*');
+    del(vl.common.bin + '/*');
     done();
 }));
 gulp.task('clr:dist', gulp.parallel((done) => {
-    del(vl.cmommon.dist + '/*');
+    del(vl.common.dist + '/*');
     done();
 }));
 
@@ -56,7 +56,7 @@ gulp.task('clr:dist', gulp.parallel((done) => {
  */
 gulp.task('show', gulp.parallel((done) => {
     browserSync.init({
-        server: dirs.dist
+        server: vl.common.dist
     });
     done();
 }));
@@ -90,3 +90,38 @@ gulp.task('pug:min', gulp.parallel((done) => {
         gulp.dest(vl.pug.dist)
     ], done());
 }));
+
+/**
+ * @name watchs
+ * @author avijit sakrar
+ * @version 1.0
+ * 
+ */
+gulp.task('pug:w', gulp.parallel('pug:min', (done) => {
+    gulp.watch(vl.watch.pug, gulp.parallel('pug:min'))
+    done();
+}))
+gulp.task('show:w', gulp.parallel('show', () => {
+    gulp.watch(vl.common.dist).on('change', reload)
+}));
+
+/**
+ * @name ShortHand (:all)
+ * @author avijit sakrar
+ * @version 1.0
+ * 
+ */
+gulp.task('clr:all', gulp.parallel('clr:bin', 'clr:dist'));
+
+/**
+ * @name ShortHand ( you will use it )
+ * @author avijit sakrar
+ * @version 1.0
+ * 
+ */
+gulp.task('dev:all', gulp.parallel('pug:w', 'show:w'))
+gulp.task('dev:font', gulp.parallel('pug:w'))
+
+gulp.task('clear', gulp.parallel('clr:all'));
+
+gulp.task('build', gulp.series('clear', 'sft:img', 'pug:min'));
