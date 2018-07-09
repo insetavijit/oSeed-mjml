@@ -22,6 +22,8 @@ cmnd | what is does ?
 ---|---
 `sft:img`| copresses img files ( rem : update file links with urls)
 ---|---
+`to:jade`| html to jade . in case you want a `html templte to jade templte`
+---|---
 `pug:full` | compiles pug files to `html -> mjml -> html`
 `pug:w` | runs `pug:full` in compress mode.
 `pug:w` | runs `pug:min` in watch mode 

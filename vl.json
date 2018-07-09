@@ -12,8 +12,10 @@
         "bin":".bin"
     },
     "doc":{
-        "project":"doc/project",
-        "mjml":"doc/mjml"
+        "html2jade":{
+            "src":"doc/html/**.html",
+            "dist":".bin"
+        }
     },
     "pug":{
         "entryfile":"src/index.pug",

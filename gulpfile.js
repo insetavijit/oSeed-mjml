@@ -36,6 +36,20 @@ gulp.task('sft:img', gulp.parallel((done) => {
     ], done());
 }));
 /**
+ * @type convers html files to jade files
+ * @desc : pipe
+ * @version 1.0
+ */
+gulp.task('to:jade', gulp.parallel((done) => {
+    pump([
+        gulp.src(vl.doc.html2jade.src),
+        html2jade({
+            nspaces: 4
+        }),
+        gulp.dest(vl.doc.html2jade.dist)
+    ], done());
+}));
+/**
  * @type cleaning 
  * @desc none 
  * @version 1.0.0
